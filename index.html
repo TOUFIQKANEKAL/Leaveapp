@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lumen Leave Desk</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- LOGIN -->
+  <div id="loginPage" class="page">
+    <div class="login-card">
+      <h2>Lumen Leave Desk</h2>
+
+      <form id="loginForm" autocomplete="off">
+        <label class="label">Username</label>
+        <input id="username" type="text" placeholder="ram / sai / krishna" required />
+
+        <label class="label">Password</label>
+        <div class="password-wrap">
+          <input id="password" type="password" placeholder="ram123 / sai123 / krishna123" required />
+          <button id="togglePwd" type="button" class="eye" aria-label="toggle password">👁️</button>
+        </div>
+
+        <button type="submit" class="btn primary">Login</button>
+
+        <div class="links">
+          <a href="#">Forgot password?</a> · <a href="#">New account</a>
+        </div>
+
+        <p id="loginError" class="error" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- APP -->
+  <div id="app" class="hidden">
+    <!-- Fixed hamburger always visible -->
+    <button id="hamburgerBtn" class="hamburger-btn" aria-label="Toggle menu">☰</button>
+
+    <!-- Sidebar (hidden by default) -->
+    <aside id="sidebar" class="sidebar">
+      <div class="brand">Lumen</div>
+      <nav>
+        <ul>
+          <li><button id="navWelcome" class="nav-btn">🏠 <span class="label">Welcome</span></button></li>
+          <li><button id="navApply" class="nav-btn">📝 <span class="label">Apply Leave</span></button></li>
+          <li><button id="navRecords" class="nav-btn">📋 <span class="label">Employee Records</span></button></li>
+          <li><button id="btnLogout" class="nav-btn danger">🚪 <span class="label">Logout</span></button></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main id="mainContent" class="main">
+      <!-- Welcome -->
+      <section id="welcomeSection" class="section active">
+        <h1 class="welcome-heading">Welcome to Lumen Leave Desk</h1>
+      </section>
+
+      <!-- Apply Leave -->
+      <section id="applySection" class="section">
+        <div class="apply-grid">
+          <!-- Left: form (spreads) -->
+          <div class="form-panel">
+            <h2>Apply for Leave</h2>
+
+            <form id="leaveForm">
+              <div class="row">
+                <label>Leave Type</label>
+                <select id="leaveType" required>
+                  <option value="Casual">Casual Leave</option>
+                  <option value="Sick">Sick Leave</option>
+                  <option value="Earned">Earned Leave</option>
+                  <option value="Personal">Personal Leave</option>
+                </select>
+              </div>
+
+              <div class="row">
+                <label>Leave Mode</label>
+                <select id="leaveMode" required>
+                  <option value="continuous">Continuous Dates</option>
+                  <option value="specific">Specific Dates</option>
+                </select>
+              </div>
+
+              <div id="continuousFields" class="grid-2">
+                <div class="row">
+                  <label>From</label>
+                  <input id="fromDate" type="date" />
+                </div>
+                <div class="row">
+                  <label>To</label>
+                  <input id="toDate" type="date" />
+                </div>
+              </div>
+
+              <div id="specificFields" class="hidden">
+                <div class="row inline">
+                  <input id="specificDate" type="date" />
+                  <button type="button" id="addDateBtn" class="btn small">➕ Add</button>
+                </div>
+                <ul id="dateList" class="chips"></ul>
+              </div>
+
+              <div class="row">
+                <label>Reason</label>
+                <textarea id="reason" rows="3" placeholder="Reason for leave (optional)"></textarea>
+              </div>
+
+              <div class="row inline-between">
+                <div><strong>No. of Days:</strong> <span id="numDays">0</span></div>
+                <div class="actions">
+                  <button type="button" id="previewBtn" class="btn outline">📧 Preview</button>
+                  <button type="submit" id="submitBtn" class="btn primary">✅ Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right: preview & history summary -->
+          <div class="preview-panel">
+            <div id="previewBox" class="preview-box hidden"></div>
+
+            <div class="recent-card">
+              <h3>Recent Submissions</h3>
+              <table class="records-table">
+                <thead>
+                  <tr><th>Employee</th><th>Type</th><th>Mode</th><th>Days</th></tr>
+                </thead>
+                <tbody id="recentBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Employee Records -->
+      <section id="recordsSection" class="section">
+        <h2>Employee Leave Records</h2>
+        <div class="records-wrap">
+          <table class="full-records">
+            <thead>
+              <tr>
+                <th>Employee</th><th>Role</th><th>Type</th><th>Mode</th><th>Dates</th><th>Days</th><th>Reason</th>
+              </tr>
+            </thead>
+            <tbody id="recordsBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

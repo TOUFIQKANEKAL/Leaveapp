@@ -1,0 +1,102 @@
+:root{
+  --blue:#1e3c72;
+  --orange:#ff6b35;
+  --purple:#7b2cbf;
+  --muted:#6b7280;
+  --card:#ffffff;
+}
+
+/* Reset-ish */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Segoe UI,Arial,sans-serif;background:#f5f7fb;color:#222}
+
+/* ---------- Login ---------- */
+.page{display:flex;align-items:center;justify-content:center;height:100vh}
+.hidden{display:none}
+
+.login-card{
+  width:360px;padding:28px;border-radius:12px;
+  background:linear-gradient(135deg,var(--blue),var(--orange),var(--purple));
+  color:#fff;box-shadow:0 8px 30px rgba(17,24,39,0.12);
+  text-align:left;
+}
+.login-card h2{margin:0 0 12px;font-size:22px;text-align:center}
+.label{font-size:13px;color:rgba(255,255,255,0.9);margin-bottom:6px;display:block}
+.login-card input[type="text"], .login-card input[type="password"]{
+  width:100%;padding:10px;border-radius:8px;border:none;margin-bottom:12px;
+  outline:none;font-size:14px;
+}
+.password-wrap{position:relative}
+.eye{position:absolute;right:8px;top:8px;background:transparent;border:none;color:#fff;font-size:16px;cursor:pointer}
+.btn{padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+.btn.primary{background:linear-gradient(90deg,var(--blue),var(--orange));color:#fff}
+.links{text-align:center;margin-top:10px}
+.links a{color:#fff;text-decoration:underline}
+.error{color:#ffdddd;background:rgba(255,0,0,0.08);padding:6px;border-radius:6px;margin-top:8px;display:none}
+
+/* ---------- App layout ---------- */
+.hamburger-btn{
+  position:fixed;left:12px;top:12px;z-index:1200;
+  width:44px;height:44px;border-radius:8px;border:none;background:var(--orange);color:#fff;
+  font-size:20px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.12);
+  display:none; /* visible after login via JS */
+}
+
+/* Sidebar */
+.sidebar{
+  position:fixed;left:-240px;top:0;width:240px;height:100vh;background:linear-gradient(180deg,var(--blue),var(--purple));
+  color:#fff;padding:28px 14px;transition:left .28s ease,box-shadow .28s;
+  z-index:1000;box-shadow:0 8px 30px rgba(0,0,0,0.12);
+}
+.sidebar.active{left:0}
+.sidebar .brand{font-size:20px;font-weight:700;margin-bottom:18px}
+.sidebar nav ul{list-style:none;padding:0;margin:0}
+.nav-btn{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border-radius:10px;border:none;background:transparent;color:#fff;text-align:left;cursor:pointer;font-weight:600}
+.nav-btn:hover{background:rgba(255,255,255,0.06)}
+.nav-btn .label{display:inline-block}
+.nav-btn.danger{background:rgba(255,0,0,0.12)}
+
+/* Main */
+.main{margin-left:0;transition:margin-left .28s ease;padding:34px 28px;min-height:100vh}
+.main.shift{margin-left:240px}
+
+/* Section header */
+.welcome-heading{text-align:center;margin-top:18px;color:var(--purple);font-size:28px}
+
+/* Apply area layout */
+.apply-grid{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap}
+.form-panel{flex:1 1 520px;background:linear-gradient(180deg,#fff,#fff);padding:22px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.05)}
+.preview-panel{flex:0 0 380px;display:flex;flex-direction:column;gap:18px}
+
+/* Form styles */
+.form-panel h2{margin-top:0;color:var(--blue)}
+.row{margin-bottom:12px}
+.row.inline{display:flex;gap:8px;align-items:center}
+.row.inline-between{display:flex;justify-content:space-between;align-items:center}
+.row label{display:block;font-weight:600;margin-bottom:6px}
+input[type="text"], input[type="date"], select, textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e6;font-size:14px}
+textarea{resize:vertical}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;padding:0;list-style:none}
+.chips li{background:rgba(30,60,114,0.08);padding:6px 10px;border-radius:999px;border:1px solid rgba(30,60,114,0.06);font-weight:600}
+
+/* buttons inside form */
+.actions .btn{margin-left:8px}
+.btn.small{padding:6px 10px;border-radius:8px}
+
+/* preview box & recent panel */
+.preview-box{background:#fff;border-radius:10px;padding:12px;border:1px solid #e6e6e6;min-height:140px}
+.recent-card{background:#fff;padding:12px;border-radius:10px;border:1px solid #e9eef6}
+.records-table, .full-records{width:100%;border-collapse:collapse}
+.records-table th, .records-table td, .full-records th, .full-records td{border:1px solid #eef2f7;padding:8px;text-align:left;font-size:13px}
+.records-table thead{background:#f8fafc}
+
+/* Responsive */
+@media (max-width:1000px){
+  .apply-grid{flex-direction:column}
+  .preview-panel{order:2;flex:1}
+  .form-panel{order:1}
+  .sidebar{left:-220px}
+}
